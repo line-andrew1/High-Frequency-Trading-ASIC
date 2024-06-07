@@ -49,11 +49,11 @@ Confirmation operations are a little different those of the other operations. It
 ## Trading Module
 The trading module will take in data from the algorithm module, it will then compare it to the average and make a decision whether or not to purchase the security. The image below shows an example of how this system works. The green and red highlighted areas indicate a buy or sell decision is executed here.
 
-![alt text](https://gitlab.cs.washington.edu/lineandr/ee478-capstone/-/raw/8f26388bac8137891f78d003f47619a37efef235/img/sma_example.png?raw=true)
+![alt text](img/sma_example.png)
 
 The trade decision module works with a simple handshake to determine if the data that it is intaking is valid. This is paired with the bsg_guts to provide communication and simulation of a fifo of bits from the network protocol.
 
-![alt text](https://gitlab.cs.washington.edu/lineandr/ee478-capstone/-/raw/main/img/trade_decision.drawio.png?raw=true)
+![alt text](img/trade_decision.drawio.png)
 
 ### BSG Link
 To operationalize the use of the chip we will be utilizing BSG_Link and bsg_guts (bsg_wormhole_router) provided by the [Bespoke Silicon Group](https://www.bsg.ai/) at the University of Washington under Professor Tayor. This system will be used primarily for the interface to the trading system. This chip utilized 8-bits of physical wires per DDR channel utilizing a standard sized FSB packet (80-bits) to communicate with the trade_decision module. The FSB packet is defined in the following table:
