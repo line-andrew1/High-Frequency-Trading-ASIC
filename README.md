@@ -3,7 +3,7 @@
 ## Description
 A theorized algorithm for high frequency trading of Microsoft shares. Modeled after currently used trading devices. This device will trade only one type of security, which will then be implemented in multiple different cores to trade multiple securities.
 
-![alt text](https://gitlab.cs.washington.edu/lineandr/ee478-capstone/-/raw/main/img/Top_Level_Flow.drawio_3_.png?raw=true)
+![alt text](img/Top_Level_Flow.drawio_3_.png)
 
 ## Simplified FIX/FAST Encoding
 _**All prices are specified in price for a single security**_
