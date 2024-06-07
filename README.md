@@ -1,7 +1,7 @@
 # EE478 Capstone
 
 ## Description
-A theorized algorithm for high frequency trading of Microsoft shares. Modeled after currently used trading devices. This device will trade only one type of security, which will then be implemented in multiple different cores to trade multiple securities.
+A theorized algorithm for high-frequency trading of Microsoft shares. Modeled after currently used trading devices. This device will trade only one type of security, which will then be implemented in multiple different cores to trade multiple securities.
 
 ![alt text](img/Top_Level_Flow.drawio_3_.png)
 
@@ -45,6 +45,9 @@ _**All prices are specified in price for a single security**_
 
 ### Confirmation
 Confirmation operations are a little different those of the other operations. It uses the offer bits of the signal to express a confirmation for a purchase (increment counter). The bid bits of the signal are used to express a confirmation for a sale (decrement counter). Both fields can be filled at once, but if it is all zeros then nothing will occur.
+
+##SMA
+The simple moving average (SMA) algorithm module takes in data from the incoming encoding message and performs an average calculation based on window size. It can be configured as a passthrough module with a window size of 1. By default the window size is 4. Future work will incorporate an enable signal into the SMA to grant the ability to perform operations with finer control, and a storage module to enable the SMA to work over multiple CUSIP numbers.
 
 ## Trading Module
 The trading module will take in data from the algorithm module, it will then compare it to the average and make a decision whether or not to purchase the security. The image below shows an example of how this system works. The green and red highlighted areas indicate a buy or sell decision is executed here.
