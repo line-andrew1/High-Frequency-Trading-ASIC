@@ -1,0 +1,115 @@
+# tb.yml - Simulation Testbench Configuration
+
+# List of Verilog testbenches (or other sources) needed for simulations.
+sim.inputs.tb_input_files: [
+  # Defines/Packages (keep at the top)
+  "${bsg_root}/bsg_misc/bsg_defines.v",
+  "${bsg_root}/bsg_fsb/bsg_fsb_pkg.v",
+  "${bsg_root}/bsg_noc/bsg_noc_pkg.v",
+  "${bsg_root}/bsg_noc/bsg_mesh_router_pkg.v",
+  "${bsg_root}/bsg_noc/bsg_wormhole_router_pkg.v",
+
+  # Basejump STL sources
+  "${bsg_root}/bsg_async/bsg_async_credit_counter.v",
+  "${bsg_root}/bsg_async/bsg_async_fifo.v",
+  "${bsg_root}/bsg_async/bsg_async_ptr_gray.v",
+  "${bsg_root}/bsg_async/bsg_launch_sync_sync.v",
+  "${bsg_root}/bsg_async/bsg_sync_sync.v",
+  "${bsg_root}/bsg_dataflow/bsg_flatten_2D_array.v",
+  "${bsg_root}/bsg_dataflow/bsg_make_2D_array.v",
+  "${bsg_root}/bsg_dataflow/bsg_one_fifo.v",
+  "${bsg_root}/bsg_dataflow/bsg_parallel_in_serial_out.v",
+  "${bsg_root}/bsg_dataflow/bsg_round_robin_1_to_n.v",
+  "${bsg_root}/bsg_dataflow/bsg_serial_in_parallel_out_full.v",
+  "${bsg_root}/bsg_dataflow/bsg_two_fifo.v",
+  "${bsg_root}/bsg_link/bsg_link_ddr_downstream.v",
+  "${bsg_root}/bsg_link/bsg_link_ddr_upstream.v",
+  "${bsg_root}/bsg_link/bsg_link_iddr_phy.v",
+  "${bsg_root}/bsg_link/bsg_link_oddr_phy.v",
+  "${bsg_root}/bsg_link/bsg_link_source_sync_downstream.v",
+  "${bsg_root}/bsg_link/bsg_link_source_sync_upstream.v",
+  "${bsg_root}/bsg_mem/bsg_mem_1r1w.v",
+  "${bsg_root}/bsg_mem/bsg_mem_1r1w_synth.v",
+  "${bsg_root}/bsg_misc/bsg_array_concentrate_static.v",
+  "${bsg_root}/bsg_misc/bsg_circular_ptr.v",
+  "${bsg_root}/bsg_misc/bsg_concentrate_static.v",
+  "${bsg_root}/bsg_misc/bsg_counter_clear_up.v",
+  "${bsg_root}/bsg_misc/bsg_counter_set_down.v",
+  "${bsg_root}/bsg_misc/bsg_cycle_counter.v",
+  "${bsg_root}/bsg_misc/bsg_dff_en.v",
+  "${bsg_root}/bsg_misc/bsg_dff_reset.v",
+  "${bsg_root}/bsg_misc/bsg_dff_reset_en.v",
+  "${bsg_root}/bsg_misc/bsg_gray_to_binary.v",
+  "${bsg_root}/bsg_misc/bsg_mux.v",
+  "${bsg_root}/bsg_misc/bsg_mux_one_hot.v",
+  "${bsg_root}/bsg_misc/bsg_round_robin_arb.v",
+  "${bsg_root}/bsg_misc/bsg_scan.v",
+  "${bsg_root}/bsg_misc/bsg_transpose.v",
+  "${bsg_root}/bsg_misc/bsg_unconcentrate_static.v",
+  "${bsg_root}/bsg_noc/bsg_ready_and_link_async_to_wormhole.v",
+  "${bsg_root}/bsg_noc/bsg_wormhole_router.v",
+  "${bsg_root}/bsg_noc/bsg_wormhole_router_decoder_dor.v",
+  "${bsg_root}/bsg_noc/bsg_wormhole_router_input_control.v",
+  "${bsg_root}/bsg_noc/bsg_wormhole_router_output_control.v",
+  "${bsg_root}/bsg_test/bsg_nonsynth_clock_gen.v",
+  "${bsg_root}/bsg_test/bsg_nonsynth_reset_gen.v",
+  "${bsg_root}/bsg_test/bsg_nonsynth_val_watcher_1p.v",
+  "${bsg_root}/bsg_test/bsg_trace_replay.v",
+  "${bsg_root}/bsg_test/test_bsg_data_gen.v",
+
+  # bsg_guts and IO sources
+  "../common/v/bsg_guts.v",
+
+  # Boards sources
+  "../common/v/boards/bsg_double_trouble_pcb.v",
+  "../common/v/boards/bsg_asic_socket.v",
+  "../common/v/boards/bsg_gateway_socket.v",
+
+  # # Manycore sources
+  # "../common/v/manycore/bsg_manycore_spmd_loader.v",
+  # "../common/v/manycore/bsg_manycore_vscale_pipeline_trace.v",
+  # "../common/v/manycore/bsg_nonsynth_manycore_io_complex.v",
+  # "../common/v/manycore/bsg_nonsynth_manycore_monitor.v",
+  # "../common/v/manycore/bsg_1hold.v",
+  # "../common/v/manycore/bsg_manycore_endpoint.v",
+  # "../common/v/manycore/bsg_manycore_endpoint_standard.v",
+  # "../common/v/manycore/bsg_manycore_links_to_fsb.v",
+  # "../common/v/manycore/bsg_manycore_pkt_decode.v",
+  # "../common/v/manycore/bsg_manycore_swap_ctrl.v",
+
+  # Toplevel sources
+  "v/bsg_gateway_chip.v",
+  "v/bsg_test_node_master.v",
+]
+sim.inputs.tb_input_files_meta: [subst]
+
+# Toplevel simulation module name
+sim.inputs.tb_name: "bsg_double_trouble_pcb"
+sim.inputs.dut_path: "bsg_double_trouble_pcb.asic.ASIC"
+
+# Search directories for `include directives in simulations
+sim.inputs.tb_incdir: [
+  "${bsg_root}/bsg_misc",
+  "${bsg_root}/bsg_noc",
+  "../common/v/packaging",
+  "../common/v/manycore",
+]
+sim.inputs.tb_incdir_meta: [subst]
+
+# Macro definitions for simulations
+sim.inputs.tb_defines: [
+  "FSB_LEGACY=1",
+  "NUM_MASTER_NODES=1",
+  "CORE_0_PERIOD=25000", # For ASIC
+  "IO_MASTER_0_PERIOD=40000", # For ASIC
+  "CORE_1_PERIOD=25000", # For testbench
+  "IO_MASTER_1_PERIOD=40000", # For testbench
+]
+sim.inputs.tb_defines_meta: [subst]
+
+# List of trace files for the simulation
+sim.inputs.trace_files: [
+  "v/bsg_trace_master_0.tr" # Trade Decision trace file
+]
+sim.inputs.trace_files_meta: [subst]
+

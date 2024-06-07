@@ -1,0 +1,15 @@
+# Extra Hammer config file.
+# Setup Signoff Verification for ee477-designs-module2 designs.
+
+# Formal setup: Add HDL search paths
+formal.inputs.hdl_search_paths: 
+  - "${bsg_root}/bsg_misc"
+  - "${bsg_root}/hard/fakeram"
+  - "${bsg_root}/bsg_noc"
+  - "../../../common/v/packaging"
+  - "../../../common/v/manycore"
+  - "../../../common/v/manycore/vanilla_bean"
+formal.inputs.hdl_search_paths_meta: [subst]
+
+# Tempus setup: 
+timing.tempus.si_glitch: true
